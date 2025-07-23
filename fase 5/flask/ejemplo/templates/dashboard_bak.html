@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard Universidad</title>
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Dashboard Universidad</h1>
+
+    <section id="basic-stats">
+        <h2>Estadísticas Básicas</h2>
+        <ul>
+            <li>Total Estudiantes: <span id="total-estudiantes">Cargando...</span></li>
+            <li>Total Programas: <span id="total-programas">Cargando...</span></li>
+            <li>Promedio General: <span id="promedio-general">Cargando...</span></li>
+            <li>Total Nacionalidades: <span id="total-nacionalidades">Cargando...</span></li>
+        </ul>
+    </section>
+
+    <section id="charts">
+        <h2>Visualizaciones</h2>
+        <div id="chart-nationality" style="width:600px;height:400px;"></div>
+        <div id="chart-programs" style="width:600px;height:400px;"></div>
+        <div id="chart-performance" style="width:600px;height:400px;"></div>
+        <div id="chart-enrollment" style="width:600px;height:400px;"></div>
+        <div id="chart-age" style="width:600px;height:400px;"></div>
+    </section>
+
+    <script>
+        async function fetchBasicStats() {
+            const response = await fetch('/api/stats');
+            const data = await response.json();
+            document.getElementById('total-estudiantes').textContent = data.total_estudiantes;
+            document.getElementById('total-programas').textContent = data.total_programas;
+            document.getElementById('promedio-general').textContent = data.promedio_general;
+            document.getElementById('total-nacionalidades').textContent = data.total_nacionalidades;
+        }
+
+        async function fetchAndRenderCharts() {
+            // Nationality chart
+            const nationalityData = await fetch('/api/nationality').then(res => res.json());
+            const nationalityTrace = {
+                x: nationalityData.map(d => d.nacionalidad),
+                y: nationalityData.map(d => d.cantidad),
+                type: 'bar'
+            };
+            Plotly.newPlot('chart-nationality', [nationalityTrace], {title: 'Estudiantes por Nacionalidad'});
+
+            // Programs chart
+            const programsData = await fetch('/api/programs').then(res => res.json());
+            const programsTrace = {
+                x: programsData.map(d => d.programa_academico),
+                y: programsData.map(d => d.cantidad),
+                type: 'bar'
+            };
+            Plotly.newPlot('chart-programs', [programsTrace], {title: 'Estudiantes por Programa'});
+
+            // Performance chart
+            const performanceData = await fetch('/api/performance').then(res => res.json());
+            const performanceTrace = {
+                labels: performanceData.map(d => d.categoria_rendimiento),
+                values: performanceData.map(d => d.cantidad),
+                type: 'pie'
+            };
+            Plotly.newPlot('chart-performance', [performanceTrace], {title: 'Distribución de Rendimiento'});
+
+            // Enrollment trends chart
+            const enrollmentData = await fetch('/api/enrollment').then(res => res.json());
+            const enrollmentTrace = {
+                x: enrollmentData.map(d => d.anio_ingreso),
+                y: enrollmentData.map(d => d.nuevos_estudiantes),
+                type: 'scatter',
+                mode: 'lines+markers'
+            };
+            Plotly.newPlot('chart-enrollment', [enrollmentTrace], {title: 'Tendencias de Inscripción'});
+
+            // Age distribution chart
+            const ageData = await fetch('/api/age').then(res => res.json());
+            const ageTrace = {
+                x: ageData.map(d => d.rango_edad),
+                y: ageData.map(d => d.cantidad),
+                type: 'bar'
+            };
+            Plotly.newPlot('chart-age', [ageTrace], {title: 'Distribución de Edades'});
+        }
+
+        // Initialize dashboard
+        fetchBasicStats();
+        fetchAndRenderCharts();
+    </script>
+</body>
+</html>

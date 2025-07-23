@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba python</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2025.3.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2025.3.1/core.js"></script>
+</head>
+<body>
+
+    <!-- Fuentes:
+        https://aulab.es/noticia/187/que-es-pyscript-el-sistema-para-programar-python-en-html#:~:text=Con%20PyScript%20podemos%20escribir%20c%C3%B3digo,efectiva%2C%20teniendo%20todo%20a%20mano 
+        https://docs.pyscript.net/2025.3.1/beginning-pyscript/
+
+
+    Etiquetas útiles:    
+    <py-env>: define los paquetes necesarios para ejecutar el código de Python.
+    <py-script>: es donde escribes el código Python que luego se ejecutará dentro de la página web.
+    <py-repl>: crea un componente REPL (read-eval-print-loop) que evalúa el código insertado y muestra los resultados.
+    
+    -->
+    <py-script> 
+        # aparece en consola
+        print('Bienvenido a GEPI!') 
+        from arrr import translate
+
+        english = "Hello there. How are you?"
+        pirate = translate(english)
+        print(pirate)
+    </py-script> 
+
+        <h1>Polyglot 🦜 💬 🇬🇧 ➡️ 🏴‍☠️</h1>
+        <p>Translate English into Pirate speak...</p>
+        <input type="text" name="english" id="ingles" placeholder="Escribir frase en inglés..." />
+        <button py-click="traducir_ingles">Traducir</button>
+        <div id="salida"></div>
+        <script type="py" src="./main.py" config="./pyscript.json"></script>
+</body>
+</html>

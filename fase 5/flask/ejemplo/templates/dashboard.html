@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard Universidad</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col">
+
+    <header class="bg-blue-700 text-white p-4 shadow-md">
+        <h1 class="text-3xl font-bold">Dashboard Universidad</h1>
+    </header>
+
+    <main class="flex-grow container mx-auto p-6">
+
+        <section id="search-section" class="mb-8 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-4">Buscar Estudiantes</h2>
+            <form id="search-form" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <input type="text" id="search-nombre" placeholder="Nombres, Apellidos, Correo o Teléfono" 
+                    class="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <select id="filter-programa" class="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="">Programa Académico</option>
+                </select>
+                <select id="filter-pais" class="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="">País</option>
+                </select>
+                <input type="date" id="filter-fecha-inicio" class="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <input type="date" id="filter-fecha-fin" class="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <button type="submit" class="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition">Buscar</button>
+            </form>
+            <div id="search-results" class="mt-6"></div>
+        </section>
+
+        <section id="basic-stats" class="mb-8 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-4">Estadísticas Básicas</h2>
+            <ul class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <li class="bg-blue-100 rounded p-4 shadow">
+                    <div class="text-3xl font-bold" id="total-estudiantes">Cargando...</div>
+                    <div>Total Estudiantes</div>
+                </li>
+                <li class="bg-green-100 rounded p-4 shadow">
+                    <div class="text-3xl font-bold" id="total-programas">Cargando...</div>
+                    <div>Total Programas</div>
+                </li>
+                <li class="bg-yellow-100 rounded p-4 shadow">
+                    <div class="text-3xl font-bold" id="promedio-general">Cargando...</div>
+                    <div>Promedio General</div>
+                </li>
+                <li class="bg-purple-100 rounded p-4 shadow">
+                    <div class="text-3xl font-bold" id="total-nacionalidades">Cargando...</div>
+                    <div>Total Nacionalidades</div>
+                </li>
+            </ul>
+        </section>
+
+        <section id="charts" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-lg font-semibold mb-4">Estudiantes por Nacionalidad</h3>
+                <div id="chart-nationality" style="width:100%;height:400px;"></div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-lg font-semibold mb-4">Estudiantes por Programa</h3>
+                <div id="chart-programs" style="width:100%;height:400px;"></div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-lg font-semibold mb-4">Distribución de Rendimiento</h3>
+                <div id="chart-performance" style="width:100%;height:400px;"></div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-lg font-semibold mb-4">Tendencias de Inscripción</h3>
+                <div id="chart-enrollment" style="width:100%;height:400px;"></div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md md:col-span-2">
+                <h3 class="text-lg font-semibold mb-4">Distribución de Edades</h3>
+                <div id="chart-age" style="width:100%;height:400px;"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white p-4 text-center">
+        &copy; 2025 Universidad - Dashboard ETL
+    </footer>
+
+    <script>
+        async function fetchBasicStats() {
+            const response = await fetch('/api/stats');
+            const data = await response.json();
+            document.getElementById('total-estudiantes').textContent = data.total_estudiantes;
+            document.getElementById('total-programas').textContent = data.total_programas;
+            document.getElementById('promedio-general').textContent = data.promedio_general;
+            document.getElementById('total-nacionalidades').textContent = data.total_nacionalidades;
+        }
+
+        async function fetchAndRenderCharts() {
+            // Nationality chart
+            const nationalityData = await fetch('/api/nationality').then(res => res.json());
+            const nationalityTrace = {
+                x: nationalityData.map(d => d.nacionalidad),
+                y: nationalityData.map(d => d.cantidad),
+                type: 'bar',
+                marker: {color: '#3b82f6'}
+            };
+            Plotly.newPlot('chart-nationality', [nationalityTrace], {title: 'Estudiantes por Nacionalidad'});
+
+            // Programs chart
+            const programsData = await fetch('/api/programs').then(res => res.json());
+            const programsTrace = {
+                x: programsData.map(d => d.programa_academico),
+                y: programsData.map(d => d.cantidad),
+                type: 'bar',
+                marker: {color: '#10b981'}
+            };
+            Plotly.newPlot('chart-programs', [programsTrace], {title: 'Estudiantes por Programa'});
+
+            // Performance chart
+            const performanceData = await fetch('/api/performance').then(res => res.json());
+            const performanceTrace = {
+                labels: performanceData.map(d => d.categoria_rendimiento),
+                values: performanceData.map(d => d.cantidad),
+                type: 'pie'
+            };
+            Plotly.newPlot('chart-performance', [performanceTrace], {title: 'Distribución de Rendimiento'});
+
+            // Enrollment trends chart
+            const enrollmentData = await fetch('/api/enrollment').then(res => res.json());
+            const enrollmentTrace = {
+                x: enrollmentData.map(d => d.anio_ingreso),
+                y: enrollmentData.map(d => d.nuevos_estudiantes),
+                type: 'scatter',
+                mode: 'lines+markers',
+                line: {color: '#f59e0b'}
+            };
+            Plotly.newPlot('chart-enrollment', [enrollmentTrace], {title: 'Tendencias de Inscripción'});
+
+            // Age distribution chart
+            const ageData = await fetch('/api/age').then(res => res.json());
+            const ageTrace = {
+                x: ageData.map(d => d.rango_edad),
+                y: ageData.map(d => d.cantidad),
+                type: 'bar',
+                marker: {color: '#8b5cf6'}
+            };
+            Plotly.newPlot('chart-age', [ageTrace], {title: 'Distribución de Edades'});
+        }
+
+        async function fetchFilters() {
+            const response = await fetch('/api/filters');
+            const data = await response.json();
+
+            // Populate program filter
+            const programaSelect = document.getElementById('filter-programa');
+            programaSelect.innerHTML = '<option value="">Programa Académico</option>';
+            data.programas.forEach(programa => {
+                const option = document.createElement('option');
+                option.value = programa;
+                option.textContent = programa;
+                programaSelect.appendChild(option);
+            });
+
+            // Populate country filter
+            const paisSelect = document.getElementById('filter-pais');
+            paisSelect.innerHTML = '<option value="">País</option>';
+            data.nacionalidades.forEach(pais => {
+                const option = document.createElement('option');
+                option.value = pais;
+                option.textContent = pais;
+                paisSelect.appendChild(option);
+            });
+        }
+
+        async function performSearch(event) {
+            event.preventDefault();
+
+            const nombre = document.getElementById('search-nombre').value.trim();
+            const programa = document.getElementById('filter-programa').value;
+            const pais = document.getElementById('filter-pais').value;
+            const fechaInicio = document.getElementById('filter-fecha-inicio').value;
+            const fechaFin = document.getElementById('filter-fecha-fin').value;
+
+            // Build query parameters
+            const params = new URLSearchParams();
+            if (nombre) params.append('nombre', nombre);
+            if (programa) params.append('programa', programa);
+            if (pais) params.append('nacionalidad', pais);
+            // Date filters are not implemented in backend, so ignored here
+
+            const url = '/api/search?' + params.toString();
+
+
+            const response = await fetch(url);
+            const results = await response.json();
+
+            const resultsDiv = document.getElementById('search-results');
+            resultsDiv.innerHTML = '';
+
+            if (results.length === 0) {
+                resultsDiv.innerHTML = '<p class="text-red-600">No se encontraron resultados.</p>';
+                return;
+            }
+
+            const table = document.createElement('table');
+            table.className = 'min-w-full bg-white border border-gray-300 rounded shadow';
+
+            const thead = document.createElement('thead');
+            thead.innerHTML = `
+                <tr class="bg-blue-600 text-white">
+                    <th class="py-2 px-4 border border-gray-300">Nombre Completo</th>
+                    <th class="py-2 px-4 border border-gray-300">Email</th>
+                    <th class="py-2 px-4 border border-gray-300">Programa Académico</th>
+                    <th class="py-2 px-4 border border-gray-300">Semestre</th>
+                    <th class="py-2 px-4 border border-gray-300">Nacionalidad</th>
+                    <th class="py-2 px-4 border border-gray-300">Edad</th>
+                    <th class="py-2 px-4 border border-gray-300">Estado</th>
+                </tr>
+            `;
+            table.appendChild(thead);
+
+            const tbody = document.createElement('tbody');
+            results.forEach(student => {
+                const tr = document.createElement('tr');
+                tr.className = 'text-center hover:bg-gray-100';
+                tr.innerHTML = `
+                    <td class="py-2 px-4 border border-gray-300">${student.nombre_completo}</td>
+                    <td class="py-2 px-4 border border-gray-300">${student.email}</td>
+                    <td class="py-2 px-4 border border-gray-300">${student.programa_academico}</td>
+                    <td class="py-2 px-4 border border-gray-300">${student.semestre}</td>
+                    <td class="py-2 px-4 border border-gray-300">${student.nacionalidad}</td>
+                    <td class="py-2 px-4 border border-gray-300">${student.edad}</td>
+                    <td class="py-2 px-4 border border-gray-300">${student.estado}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+
+            resultsDiv.appendChild(table);
+        }
+
+        // Initialize dashboard
+        fetchBasicStats();
+        fetchAndRenderCharts();
+        fetchFilters();
+
+        document.getElementById('search-form').addEventListener('submit', performSearch);
+    </script>
+
+</body>
+</html>

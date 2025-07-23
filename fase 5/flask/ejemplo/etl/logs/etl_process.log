@@ -1,0 +1,254 @@
+2025-06-16 19:34:27,412 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-16 19:34:27,524 - ERROR - Error en extracción: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-06-16 19:34:27,526 - ERROR - Error en proceso ETL: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-06-17 01:30:22,673 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-17 01:30:22,739 - ERROR - Error en extracción: (pymysql.err.ProgrammingError) (1146, "Table 'universidad.estudiantes' doesn't exist")
+[SQL: 
+        SELECT 
+            id_estudiante,
+            nombre,
+            apellido,
+            email,
+            telefono,
+            fecha_nacimiento,
+            nacionalidad,
+            programa_academico,
+            semestre,
+            promedio,
+            estado,
+            fecha_ingreso,
+            ciudad_origen
+        FROM estudiantes
+        ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-06-17 01:30:22,743 - ERROR - Error en proceso ETL: (pymysql.err.ProgrammingError) (1146, "Table 'universidad.estudiantes' doesn't exist")
+[SQL: 
+        SELECT 
+            id_estudiante,
+            nombre,
+            apellido,
+            email,
+            telefono,
+            fecha_nacimiento,
+            nacionalidad,
+            programa_academico,
+            semestre,
+            promedio,
+            estado,
+            fecha_ingreso,
+            ciudad_origen
+        FROM estudiantes
+        ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-06-17 01:56:32,498 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-17 01:56:32,571 - INFO - Extraídos 0 registros de la base de datos origen
+2025-06-17 01:56:32,572 - INFO - Iniciando transformación de datos...
+2025-06-17 01:56:32,577 - INFO - Eliminados 0 registros duplicados
+2025-06-17 01:56:32,634 - INFO - Transformación completada
+2025-06-17 01:56:36,729 - ERROR - Error en carga: (psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-06-17 01:56:36,731 - ERROR - Error en proceso ETL: (psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-06-17 02:01:17,255 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-17 02:01:17,335 - INFO - Extraídos 140 registros de la base de datos origen
+2025-06-17 02:01:17,335 - INFO - Iniciando transformación de datos...
+2025-06-17 02:01:17,356 - INFO - Eliminados 49 registros duplicados
+2025-06-17 02:01:17,447 - INFO - Transformación completada
+2025-06-17 02:01:21,536 - ERROR - Error en carga: (psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-06-17 02:01:21,536 - ERROR - Error en proceso ETL: (psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-06-17 10:05:58,332 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-17 10:05:58,386 - ERROR - Error en extracción: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-06-17 10:05:58,387 - ERROR - Error en proceso ETL: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-06-17 10:08:35,371 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-17 10:08:35,642 - ERROR - Error en extracción: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'172.17.0.1' (using password: YES)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-06-17 10:08:35,642 - ERROR - Error en proceso ETL: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'172.17.0.1' (using password: YES)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-06-17 10:18:42,671 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-17 10:18:42,795 - ERROR - Error en extracción: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'172.17.0.1' (using password: YES)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-06-17 10:18:42,796 - ERROR - Error en proceso ETL: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'172.17.0.1' (using password: YES)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-06-17 13:36:15,266 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-17 13:36:16,570 - ERROR - Error en extracción: (pymysql.err.ProgrammingError) (1146, "Table 'universidad.estudiantes' doesn't exist")
+[SQL: 
+        SELECT 
+            id_estudiante,
+            nombre,
+            apellido,
+            email,
+            telefono,
+            fecha_nacimiento,
+            nacionalidad,
+            programa_academico,
+            semestre,
+            promedio,
+            estado,
+            fecha_ingreso,
+            ciudad_origen
+        FROM estudiantes
+        ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-06-17 13:36:16,595 - ERROR - Error en proceso ETL: (pymysql.err.ProgrammingError) (1146, "Table 'universidad.estudiantes' doesn't exist")
+[SQL: 
+        SELECT 
+            id_estudiante,
+            nombre,
+            apellido,
+            email,
+            telefono,
+            fecha_nacimiento,
+            nacionalidad,
+            programa_academico,
+            semestre,
+            promedio,
+            estado,
+            fecha_ingreso,
+            ciudad_origen
+        FROM estudiantes
+        ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-06-17 13:43:32,297 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-17 13:43:32,465 - INFO - Extraídos 140 registros de la base de datos origen
+2025-06-17 13:43:32,466 - INFO - Iniciando transformación de datos...
+2025-06-17 13:43:32,550 - INFO - Eliminados 49 registros duplicados
+2025-06-17 13:43:32,765 - INFO - Transformación completada
+2025-06-17 13:43:34,286 - INFO - Cargados 91 registros al data warehouse
+2025-06-17 13:43:34,287 - INFO - === PROCESO ETL COMPLETADO EXITOSAMENTE ===
+2025-06-18 19:58:27,968 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-18 19:58:32,125 - ERROR - Error en extracción: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-06-18 19:58:32,126 - ERROR - Error en proceso ETL: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-06-18 20:00:41,827 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-18 20:00:42,143 - INFO - Extraídos 140 registros de la base de datos origen
+2025-06-18 20:00:42,143 - INFO - Iniciando transformación de datos...
+2025-06-18 20:00:42,175 - INFO - Eliminados 49 registros duplicados
+2025-06-18 20:00:42,181 - ERROR - Error en proceso ETL: DataProcessor.clear_characters() takes 1 positional argument but 2 were given
+2025-06-18 20:07:20,784 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-18 20:07:20,928 - INFO - Extraídos 140 registros de la base de datos origen
+2025-06-18 20:07:20,929 - INFO - Iniciando transformación de datos...
+2025-06-18 20:07:20,969 - INFO - Eliminados 49 registros duplicados
+2025-06-18 20:07:21,100 - INFO - Transformación completada
+2025-06-18 20:07:21,918 - INFO - Cargados 91 registros al data warehouse
+2025-06-18 20:07:21,931 - INFO - === PROCESO ETL COMPLETADO EXITOSAMENTE ===
+2025-06-18 20:10:44,911 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-18 20:10:45,010 - INFO - Extraídos 140 registros de la base de datos origen
+2025-06-18 20:10:45,010 - INFO - Iniciando transformación de datos...
+2025-06-18 20:10:45,021 - INFO - Eliminados 49 registros duplicados
+2025-06-18 20:10:45,083 - INFO - Transformación completada
+2025-06-18 20:10:45,551 - INFO - Cargados 91 registros al data warehouse
+2025-06-18 20:10:45,565 - INFO - === PROCESO ETL COMPLETADO EXITOSAMENTE ===
+2025-06-18 23:16:11,260 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-18 23:16:11,406 - INFO - Extraídos 140 registros de la base de datos origen
+2025-06-18 23:16:11,406 - INFO - Iniciando transformación de datos...
+2025-06-18 23:16:11,435 - INFO - Eliminados 49 registros duplicados
+2025-06-18 23:16:11,495 - INFO - Transformación completada
+2025-06-18 23:16:11,870 - INFO - Cargados 91 registros al data warehouse
+2025-06-18 23:16:11,871 - INFO - === PROCESO ETL COMPLETADO EXITOSAMENTE ===
+2025-06-18 23:25:46,694 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-18 23:25:46,759 - INFO - Extraídos 140 registros de la base de datos origen
+2025-06-18 23:25:46,760 - INFO - Iniciando transformación de datos...
+2025-06-18 23:25:46,767 - INFO - Eliminados 49 registros duplicados
+2025-06-18 23:25:46,795 - INFO - Transformación completada
+2025-06-18 23:25:47,102 - INFO - Cargados 91 registros al data warehouse
+2025-06-18 23:25:47,104 - INFO - === PROCESO ETL COMPLETADO EXITOSAMENTE ===
+2025-06-18 23:39:25,298 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-18 23:39:25,397 - INFO - Extraídos 140 registros de la base de datos origen
+2025-06-18 23:39:25,397 - INFO - Iniciando transformación de datos...
+2025-06-18 23:39:25,406 - INFO - Eliminados 49 registros duplicados
+2025-06-18 23:39:25,408 - ERROR - Error en proceso ETL: string keys in translate table must be of length 1
+2025-06-18 23:41:27,117 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-18 23:41:27,208 - INFO - Extraídos 140 registros de la base de datos origen
+2025-06-18 23:41:27,208 - INFO - Iniciando transformación de datos...
+2025-06-18 23:41:27,220 - INFO - Eliminados 49 registros duplicados
+2025-06-18 23:41:27,251 - INFO - Transformación completada
+2025-06-18 23:41:27,858 - INFO - Cargados 91 registros al data warehouse
+2025-06-18 23:41:27,892 - INFO - === PROCESO ETL COMPLETADO EXITOSAMENTE ===
+2025-06-18 23:43:13,100 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-18 23:43:13,165 - INFO - Extraídos 140 registros de la base de datos origen
+2025-06-18 23:43:13,165 - INFO - Iniciando transformación de datos...
+2025-06-18 23:43:13,172 - INFO - Eliminados 49 registros duplicados
+2025-06-18 23:43:13,201 - INFO - Transformación completada
+2025-06-18 23:43:13,526 - INFO - Cargados 91 registros al data warehouse
+2025-06-18 23:43:13,529 - INFO - === PROCESO ETL COMPLETADO EXITOSAMENTE ===
+2025-06-18 23:49:21,678 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-18 23:49:21,786 - INFO - Extraídos 140 registros de la base de datos origen
+2025-06-18 23:49:21,787 - INFO - Iniciando transformación de datos...
+2025-06-18 23:49:21,796 - INFO - Eliminados 49 registros duplicados
+2025-06-18 23:49:21,798 - ERROR - Error en proceso ETL: 'Series' object is not callable
+2025-06-18 23:50:48,208 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-18 23:50:48,276 - INFO - Extraídos 140 registros de la base de datos origen
+2025-06-18 23:50:48,277 - INFO - Iniciando transformación de datos...
+2025-06-18 23:50:48,285 - INFO - Eliminados 49 registros duplicados
+2025-06-18 23:50:48,324 - INFO - Transformación completada
+2025-06-18 23:50:48,642 - INFO - Cargados 91 registros al data warehouse
+2025-06-18 23:50:48,642 - INFO - === PROCESO ETL COMPLETADO EXITOSAMENTE ===
+2025-06-18 23:52:26,916 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-18 23:52:26,985 - INFO - Extraídos 140 registros de la base de datos origen
+2025-06-18 23:52:27,027 - INFO - Iniciando transformación de datos...
+2025-06-18 23:52:27,035 - INFO - Eliminados 49 registros duplicados
+2025-06-18 23:52:27,063 - INFO - Transformación completada
+2025-06-18 23:52:27,375 - INFO - Cargados 91 registros al data warehouse
+2025-06-18 23:52:27,376 - INFO - === PROCESO ETL COMPLETADO EXITOSAMENTE ===
+2025-06-18 23:57:43,232 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-18 23:57:43,233 - ERROR - Error en extracción: read_sql() got an unexpected keyword argument 'encoding'
+2025-06-18 23:57:43,234 - ERROR - Error en proceso ETL: read_sql() got an unexpected keyword argument 'encoding'
+2025-06-19 00:04:01,142 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-19 00:04:01,181 - ERROR - Error en extracción: (pymysql.err.OperationalError) (1049, "Unknown database 'universidad/database'")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-06-19 00:04:01,183 - ERROR - Error en proceso ETL: (pymysql.err.OperationalError) (1049, "Unknown database 'universidad/database'")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-06-19 00:04:37,805 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-19 00:04:37,864 - INFO - Extraídos 140 registros de la base de datos origen
+2025-06-19 00:04:37,890 - INFO - Iniciando transformación de datos...
+2025-06-19 00:04:37,897 - INFO - Eliminados 49 registros duplicados
+2025-06-19 00:04:37,925 - INFO - Transformación completada
+2025-06-19 00:04:38,254 - INFO - Cargados 91 registros al data warehouse
+2025-06-19 00:04:38,255 - INFO - === PROCESO ETL COMPLETADO EXITOSAMENTE ===
+2025-06-19 00:05:20,852 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-19 00:05:20,931 - INFO - Extraídos 140 registros de la base de datos origen
+2025-06-19 00:05:20,960 - INFO - Iniciando transformación de datos...
+2025-06-19 00:05:20,969 - INFO - Eliminados 49 registros duplicados
+2025-06-19 00:05:20,999 - INFO - Transformación completada
+2025-06-19 00:05:21,330 - INFO - Cargados 91 registros al data warehouse
+2025-06-19 00:05:21,331 - INFO - === PROCESO ETL COMPLETADO EXITOSAMENTE ===
+2025-06-19 00:06:20,753 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-19 00:06:20,764 - ERROR - Error en extracción: 'NoneType' object has no attribute 'encoding'
+2025-06-19 00:06:20,765 - ERROR - Error en proceso ETL: 'NoneType' object has no attribute 'encoding'
+2025-06-19 00:06:55,248 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-19 00:06:55,319 - INFO - Extraídos 140 registros de la base de datos origen
+2025-06-19 00:06:55,366 - INFO - Iniciando transformación de datos...
+2025-06-19 00:06:55,379 - INFO - Eliminados 49 registros duplicados
+2025-06-19 00:06:55,424 - INFO - Transformación completada
+2025-06-19 00:06:55,750 - INFO - Cargados 91 registros al data warehouse
+2025-06-19 00:06:55,750 - INFO - === PROCESO ETL COMPLETADO EXITOSAMENTE ===
+2025-06-19 00:52:59,259 - INFO - === INICIANDO PROCESO ETL ===
+2025-06-19 00:52:59,330 - INFO - Extraídos 140 registros de la base de datos origen
+2025-06-19 00:52:59,367 - INFO - Iniciando transformación de datos...
+2025-06-19 00:52:59,376 - INFO - Eliminados 49 registros duplicados
+2025-06-19 00:52:59,407 - INFO - Transformación completada
+2025-06-19 00:52:59,768 - INFO - Cargados 91 registros al data warehouse
+2025-06-19 00:52:59,769 - INFO - === PROCESO ETL COMPLETADO EXITOSAMENTE ===
